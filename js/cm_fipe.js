@@ -55,6 +55,8 @@ jQuery(document).ready(function($) {
         $("#valorAgregado").fadeOut("slow");
     });
 
+    $('.valor-do-agregado').mask('#.##0,00', {reverse: true})
+
 
 //   VERIFICA SE HOUVE ALTERAÇÃO NO CAMPO #ANO
 
@@ -68,7 +70,7 @@ jQuery(document).ready(function($) {
             var str_data = dia + "/" + mes + "/" + ano;
 
 // PEGA O CLICK DO BUTTON E FAZ A CONTA
-            $("#continuar").on('click', function () {
+        $("#continuar").on('click', function () {
                 let valorFipe = dados.Valor;
                 valorFipe = valorFipe.replace(/[R$]+/g, '');
                 valorFipe = valorFipe.replace(".", "");
@@ -82,7 +84,10 @@ jQuery(document).ready(function($) {
                 let taxaMenor200 = 0.32;
                 let taxaMaior200 = 0.31;
                 let agregado = $('#agregado').val();
+                agregado = agregado.replace(".", "");
+                agregado = agregado.replace(",", ".");
                 agregado = parseFloat(agregado);
+                console.log(agregado);
 
 
 // PEGA VALOR DO RADIO AGREGADO
@@ -99,6 +104,10 @@ jQuery(document).ready(function($) {
                     if (fipeAgregado <= 110000) {
                         let valorFinal = 442;
                         console.log(valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'}));
+                            
+                        let valorFormatadoReal = valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
+                        let resultado = ["<input value='" + valorFormatadoReal + "'>"];
+                        $("#valorDaParcela").html(resultado);
                     }
 
                     // calcula valor da parcela caso for mais que 110mil e menor que 200mil
@@ -107,6 +116,10 @@ jQuery(document).ready(function($) {
                         let valorMensal = valorAnual / mensal;
                         let valorFinal = valorMensal + vitalicio;
                         console.log(valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'}));
+                            
+                        let valorFormatadoReal = valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
+                        let resultado = ["<input value='" + valorFormatadoReal + "'>"];
+                        $("#valorDaParcela").html(resultado);
                     }
 
                     //  calucula valor da parcela caso for maior que 200mil
@@ -115,7 +128,10 @@ jQuery(document).ready(function($) {
                         let valorMensal = valorAnual / mensal;
                         let valorFinal = valorMensal + vitalico;
                         console.log(valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'}));
-
+    
+                        let valorFormatadoReal = valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
+                        let resultado = ["<input value='" + valorFormatadoReal + "'>"];
+                        $("#valorDaParcela").html(resultado);
                     }
 
                 } else {
@@ -125,6 +141,10 @@ jQuery(document).ready(function($) {
                     if (valorFipe <= 110000) {
                         var valorFinal = 442;
                         console.log(valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'}));
+                            
+                        let valorFormatadoReal = valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
+                        let resultado = ["<input value='" + valorFormatadoReal + "'>"];
+                        $("#valorDaParcela").html(resultado);
                     }
 
                     // calcula valor da parcela caso for mais que 110mil e menor que 200mil
@@ -133,7 +153,10 @@ jQuery(document).ready(function($) {
                         let valorMensal = valorAnual / mensal;
                         let valorFinal = valorMensal + vitalico;
                         console.log(valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'}));
-
+    
+                        let valorFormatadoReal = valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
+                        let resultado = ["<input value='" + valorFormatadoReal + "'>"];
+                        $("#valorDaParcela").html(resultado);
                     }
 
                     //  calucula valor da parcela caso for maior que 200mil
@@ -142,9 +165,13 @@ jQuery(document).ready(function($) {
                         let valorMensal = valorAnual / mensal;
                         let valorFinal = valorMensal + vitalico;
                         console.log(valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'}));
-
+    
+                        let valorFormatadoReal = valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
+                        let resultado = ["<input value='" + valorFormatadoReal + "'>"];
+                        $("#valorDaParcela").html(resultado);
                     }
                 }
+            
 
             });
         });

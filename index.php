@@ -43,9 +43,13 @@ class cm_consulta_fipe extends WP_Widget {
 //printa na tela
 //echo __( 'Aqui vai o conteudo', 'cm_widget_fipe' );
         ?>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous"></script>
         <style>
             #valorSeguro {
                 background: #d1e4dd;
+                border: none;
+            }
+            #valorDaParcela input{
                 border: none;
             }
         </style>
@@ -85,7 +89,7 @@ class cm_consulta_fipe extends WP_Widget {
                 </select>
 
                 <label>Informe valor do agregado</label>
-                <input  class="form-control round" type="number" value="undefined" id="agregado" required>
+                <input  class="form-control valor-do-agregado round" type="text" value="undefined" id="agregado" required>
             </div>
 
             <div class="form-group">
@@ -96,6 +100,17 @@ class cm_consulta_fipe extends WP_Widget {
 
 
         <table class="table" id="veiculo" style="width: 100%"></table>
+
+
+
+
+        <div class="container" id="resumo">
+            <div class="row">
+                <div class="col-12" id="valorDaParcela">
+                   
+                </div>
+            </div>
+        </div>
 
         <?php
         echo $args['after_widget'];
