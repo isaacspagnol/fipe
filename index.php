@@ -1,12 +1,12 @@
 <?php
 /*
-	plugin name: CM Consulta Fipe
-	Plugin uri: https://github.com/diegopereirabarbosa/plugin_wp_cm_fipe
-	Description: Esse plugin fará acesso a tabela fipe de veículos do Brasil
+	plugin name: Proteauto Consulta Fiope
+	Plugin uri: https://github.com/isaacmicael51/fipe
+	Description: Esse plugin fará acesso a tabela fipe de veículos do Brasil e efetuará cálculos do seguro de caminhões
 	Version: 1.0
 	License: GPLv2 or later
-	Author: Diego Pereira
-	Author uri: https://conectmotors.com.br
+	Author: Isaac Spagnol
+	Author uri: https://isaacspagnol.com.br
 
 
 */
@@ -53,9 +53,9 @@ class cm_consulta_fipe extends WP_Widget {
                 border: none;
             }
         </style>
-        <form id="form_fipe" method="post">
+        <form id="form_fipe_stage_1" method="post">
             <div class="form-group">
-                <label>Tabela fipe de veículos</label>
+                <label>Informe os dados do seu caminhão</label>
             </div>
             <div class="form-group">
                 <select id="marcas" class="form-control round"></select>
@@ -93,10 +93,44 @@ class cm_consulta_fipe extends WP_Widget {
             </div>
 
             <div class="form-group">
-                <p class="btn btn-success" id="continuar">Continuar</p>
+                <a href="form_fipe_stage_2" class="btn btn-success" id="continuar">Continuar</a>
             </div>
         </form>
+        
+        <form id="form_fipe_stage_2" method="post" class="d-none">
+            <div class="form-group">
+                <label>Informe seus dados</label>
+            </div>
+            <div class="form-grupo">
+                <label for="nome">Nome</label>
+                <input name="nome" type="text" placeholder="Informe seu nome" class="form-control round">
+            </div>
+            <div class="form-grupo">
+                <label for="e-mail">E-mail</label>
+                <input name="e-mail" type="e-mail" placeholder="Informe seu e-mail" class="form-control round">
+            </div>
+            <div class="form-grupo">
+                <label for="telefone">Telefone</label>
+                <input name="telefone" type="phone" placeholder="Informe seu telefone" class="form-control round">
+            </div>
+            <div class="form-grupo">
+                <label for="Estado">Estado</label>
+                <input name="Estado" type="text" placeholder="Informe seu Estado" class="form-control round">
+            </div>
+            <div class="form-grupo">
+                <label for="Estado">Cidade</label>
+                <input name="Estado" type="text" placeholder="Informe seu estado" class="form-control round">
+            </div>
+            <div class="form-grupo">
+                <label for=" ">Possui alguma proteção atualmente?</label>
+                <input name=" " type="text" placeholder="Informe seu telefone" class="form-control round">
+            </div>
 
+            <div class="form-group">
+                <a   class="btn btn-success" id="continuar-2">Continuar</a>
+                <a href="form_fipe_stage_2" class="btn btn-success" id="voltar-1">Voltar</a>
+            </div>
+        </form>
 
 
         <table class="table" id="veiculo" style="width: 100%"></table>
@@ -104,7 +138,7 @@ class cm_consulta_fipe extends WP_Widget {
 
 
 
-        <div class="container" id="resumo">
+        <div class="container d-none" id="resumo">
             <div class="row">
                 <div class="col-12" id="valorDaParcela">
                    

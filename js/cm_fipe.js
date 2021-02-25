@@ -70,7 +70,24 @@ jQuery(document).ready(function($) {
             var str_data = dia + "/" + mes + "/" + ano;
 
 // PEGA O CLICK DO BUTTON E FAZ A CONTA
-        $("#continuar").on('click', function () {
+        $("#continuar").on('click', function (e) {
+
+            // manda para o stage_2
+           e.preventDefault();
+                $("#form_fipe_stage_2").fadeIn("slow").removeClass('d-none');
+                $("#form_fipe_stage_1").fadeOut("slow").addClass('d-none');
+
+
+          
+
+
+
+
+
+
+
+
+
                 let valorFipe = dados.Valor;
                 valorFipe = valorFipe.replace(/[R$]+/g, '');
                 valorFipe = valorFipe.replace(".", "");
@@ -79,7 +96,7 @@ jQuery(document).ready(function($) {
                 console.log(valorFipe);
 
 // VARIAVEIS DE VALORES
-                let vitalico = 91;
+                let vitalicio = 91;
                 let mensal = 100;
                 let taxaMenor200 = 0.32;
                 let taxaMaior200 = 0.31;
@@ -126,7 +143,7 @@ jQuery(document).ready(function($) {
                     if (fipeAgregado > 200000) {
                         let valorAnual = fipeAgregado * taxaMaior200;
                         let valorMensal = valorAnual / mensal;
-                        let valorFinal = valorMensal + vitalico;
+                        let valorFinal = valorMensal + vitalicio;
                         console.log(valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'}));
     
                         let valorFormatadoReal = valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
@@ -151,7 +168,7 @@ jQuery(document).ready(function($) {
                     if ((valorFipe > 110000) && (valorFipe < 200000)) {
                         let valorAnual = valorFipe * taxaMenor200;
                         let valorMensal = valorAnual / mensal;
-                        let valorFinal = valorMensal + vitalico;
+                        let valorFinal = valorMensal + vitalicio;
                         console.log(valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'}));
     
                         let valorFormatadoReal = valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
@@ -163,7 +180,7 @@ jQuery(document).ready(function($) {
                     if ((valorFipe > 200000)) {
                         let valorAnual = valorFipe * taxaMaior200;
                         let valorMensal = valorAnual / mensal;
-                        let valorFinal = valorMensal + vitalico;
+                        let valorFinal = valorMensal + vitalicio;
                         console.log(valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'}));
     
                         let valorFormatadoReal = valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
@@ -172,8 +189,19 @@ jQuery(document).ready(function($) {
                     }
                 }
             
-
             });
+
+            $("#voltar-1").on('click', function (e) {
+                // manda de volta para o stage_1
+               e.preventDefault();
+                    $("#form_fipe_stage_1").fadeIn("slow").removeClass('d-none');
+                    $("#form_fipe_stage_2").fadeOut("slow").addClass('d-none');
+            });
+
+
+
+
+
         });
     });
 });
@@ -182,3 +210,4 @@ jQuery(document).ready(function($) {
 
 
 
+// Verificar porque não está somando o agregado.
