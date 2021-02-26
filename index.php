@@ -5,7 +5,7 @@
 	Description: Esse plugin fará acesso a tabela fipe de veículos do Brasil e efetuará cálculos do seguro de caminhões
 	Version: 1.0
 	License: GPLv2 or later
-	Author: Isaac Spagnol
+	Author: Isaac Spagnol, Jefferson Sotto
 	Author uri: https://isaacspagnol.com.br
 
 
@@ -44,6 +44,7 @@ class cm_consulta_fipe extends WP_Widget {
 //echo __( 'Aqui vai o conteudo', 'cm_widget_fipe' );
         ?>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous"></script>
+        <script src="/wp-content/plugins/fipe/js/maskbrphone.js"></script>
         <style>
             #valorSeguro {
                 background: #d1e4dd;
@@ -93,7 +94,7 @@ class cm_consulta_fipe extends WP_Widget {
             </div>
 
             <div class="form-group">
-                <a href="form_fipe_stage_2" class="btn btn-success" id="continuar">Continuar</a>
+                <p class="btn btn-success" id="continuar">Continuar</p>
             </div>
         </form>
         
@@ -103,32 +104,35 @@ class cm_consulta_fipe extends WP_Widget {
             </div>
             <div class="form-grupo">
                 <label for="nome">Nome</label>
-                <input name="nome" type="text" placeholder="Informe seu nome" class="form-control round">
+                <input id="nome" name="nome" type="text" placeholder="Informe seu nome" class="form-control round">
             </div>
             <div class="form-grupo">
                 <label for="e-mail">E-mail</label>
-                <input name="e-mail" type="e-mail" placeholder="Informe seu e-mail" class="form-control round">
+                <input id="email" name="e-mail" type="e-mail" placeholder="Informe seu e-mail" class="form-control round">
             </div>
             <div class="form-grupo">
                 <label for="telefone">Telefone</label>
-                <input name="telefone" type="phone" placeholder="Informe seu telefone" class="form-control round">
+                <input id="telefone" name="telefone" type="text" placeholder="Informe seu telefone" class="form-control round telefone">
             </div>
             <div class="form-grupo">
-                <label for="Estado">Estado</label>
-                <input name="Estado" type="text" placeholder="Informe seu Estado" class="form-control round">
+                <label for="estado">Estado</label>
+                <input id="estado" name="estado" type="text" placeholder="Informe seu Estado" class="form-control round">
             </div>
             <div class="form-grupo">
-                <label for="Estado">Cidade</label>
-                <input name="Estado" type="text" placeholder="Informe seu estado" class="form-control round">
+                <label for="cidade">Cidade</label>
+                <input id="cidade" name="cidade" type="text" placeholder="Informe seu estado" class="form-control round">
             </div>
-            <div class="form-grupo">
-                <label for=" ">Possui alguma proteção atualmente?</label>
-                <input name=" " type="text" placeholder="Informe seu telefone" class="form-control round">
+            <div class="form-group">
+                <p>Possui alguma proteção atualmente?</p>
+                <input id="temProtecao" type="radio" name="comOuSemProtecao" value="1" /> Sim
+                <br />
+                <input id="nTemprotecao" type="radio" name="comOuSemProtecao" value="0"/> Não
+                <br />
             </div>
 
             <div class="form-group">
-                <a   class="btn btn-success" id="continuar-2">Continuar</a>
-                <a href="form_fipe_stage_2" class="btn btn-success" id="voltar-1">Voltar</a>
+                <p class="btn btn-success" id="continuar-2">Continuar</p>
+                <p  class="btn btn-success" id="voltar-1">Voltar</p>
             </div>
         </form>
 

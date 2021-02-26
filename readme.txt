@@ -1,21 +1,18 @@
 ===== CM Fipe ======
-Colaboradores: Diego Pereira
-Tags: Tabela Fipe, Fipe veículos, consulta Fipe, pesquisa tabela Fipe, tabela Fipe veículos.
-Requer no mínimo: 4.0
-Testado até: 5.1
-Licença: GPLv2 ou posterior
+Colaboradores: Isaac Spagnol e Jefferson sotto
+Tags: Tabela Fipe, Fipe veï¿½culos, consulta Fipe, pesquisa tabela Fipe, tabela Fipe veï¿½culos.
+Requer no mï¿½nimo: 4.0
+Testado atï¿½: 5.1
+Licenï¿½a: GPLv2 ou posterior
 
-===== Descrição =====
-O plugin CM Fipe realiza pesquisa na API "parallelum.com.br/fipe/api/v1" da tabela Fipe de veículos do Brasil disponibilizada por parallelum.com.br, e não precisa criar tabelas no banco de dados na sua instalação wordpress, deixando seu site mais rápido com uso de requisições via Ajax. O plugin não cria link de entrada ou saída no seu wordpress, todas as requisições via API não compromete a segurança do seu site.
-Os principais recursos do CM Fipe:
-Consulta informações de veículos da tabela Fipe brasileira, integrando com wordpress, é possível realizar pesquisas dinâmicas sem precisar atualizar a página. 
+===== Descriï¿½ï¿½o =====
+Esse plugin farÃ¡ acesso a tabela fipe de veÃ­culos do Brasil e efetuarÃ¡ cÃ¡lculos do seguro de caminhÃµes
 
-==== Conexão com serviços de terceiros =====
-O plugin faz a consulta na API parallelum.com.br/fipe/api/v1  via HTTP REST, consumindo os dados da tabela Fipe, que são atualizados diariamente sem precisar que seu site precise ser atualizado.
-Link do serviço: https://parallelum.com.br/fipe/api/v1/ 
-Link política de uso: https://deividfortuna.github.io/fipe/
+==== Conexï¿½o com serviï¿½os de terceiros =====
+O plugin faz a consulta na API parallelum.com.br/fipe/api/v1  via HTTP REST, consumindo os dados da tabela Fipe, que sï¿½o atualizados diariamente sem precisar que seu site precise ser atualizado.
+Link do serviï¿½o: https://parallelum.com.br/fipe/api/v1/ 
+Link polï¿½tica de uso: https://deividfortuna.github.io/fipe/
 
 
-=== Instalação ===
-Instale o plugin CM Fipe no seu wordpress, ative, e já estará pronto para ser adicionado na área widgets do seu site.
-* Data de lançamento - 27 de abril de 2019 *
+=== Instalaï¿½ï¿½o ===
+Instale o plugin  Fipe no seu wordpress, ative, e jï¿½ estarï¿½ pronto para ser adicionado na ï¿½rea widgets do seu site.

@@ -39,12 +39,7 @@ jQuery(document).ready(function($) {
 
 
 //    MARCA E DESMARCA RADIO SELECT
-    $('input[type=radio]').click(function () {
-        if (this.previous) {
-            this.checked = false;
-        }
-        this.previous = this.checked;
-    });
+    $('input[type=radio]').click(function () {if (this.previous) {this.checked = false;} this.previous = this.checked;});
 
 
 // MOSTRA E OCULTA CAMPO VALOR DO AGREGADO
@@ -55,7 +50,17 @@ jQuery(document).ready(function($) {
         $("#valorAgregado").fadeOut("slow");
     });
 
+    //  Mascaras de campos
     $('.valor-do-agregado').mask('#.##0,00', {reverse: true})
+    $('.telefone').maskbrphone();
+
+    $('.telefone').maskbrphone({  
+        useDdd           : true, // Define se o usuário deve digitar o DDD  
+        useDddParenthesis: true,  // Informa se o DDD deve estar entre parênteses  
+        dddSeparator     : ' ',   // Separador entre o DDD e o número do telefone  
+        numberSeparator  : '-'    // Caracter que separa o prefixo e o sufixo do telefone  
+    });
+
 
 
 //   VERIFICA SE HOUVE ALTERAÇÃO NO CAMPO #ANO
@@ -70,23 +75,11 @@ jQuery(document).ready(function($) {
             var str_data = dia + "/" + mes + "/" + ano;
 
 // PEGA O CLICK DO BUTTON E FAZ A CONTA
-        $("#continuar").on('click', function (e) {
+        $("#continuar").on('click', function () {
 
             // manda para o stage_2
-           e.preventDefault();
                 $("#form_fipe_stage_2").fadeIn("slow").removeClass('d-none');
                 $("#form_fipe_stage_1").fadeOut("slow").addClass('d-none');
-
-
-          
-
-
-
-
-
-
-
-
 
                 let valorFipe = dados.Valor;
                 valorFipe = valorFipe.replace(/[R$]+/g, '');
@@ -108,7 +101,7 @@ jQuery(document).ready(function($) {
 
 
 // PEGA VALOR DO RADIO AGREGADO
-                let comOuSemAgregado = $('input[name=agregado]:checked', '#form_fipe').val();
+                let comOuSemAgregado = $('input[name=agregado]:checked', '#form_fipe_stage_1').val();
 
                 //se tiver agregado
                 if (comOuSemAgregado == 1) {
@@ -191,16 +184,62 @@ jQuery(document).ready(function($) {
             
             });
 
-            $("#voltar-1").on('click', function (e) {
+            $("#voltar-1").on('click', function () {
                 // manda de volta para o stage_1
-               e.preventDefault();
                     $("#form_fipe_stage_1").fadeIn("slow").removeClass('d-none');
                     $("#form_fipe_stage_2").fadeOut("slow").addClass('d-none');
             });
 
 
+            // salva os dados form stage_2 e manda via get para o email.php
+            $("#continuar-2").on('click', function () {
+              
+                // Dados do caminhão
+                let marca           = $("#marcas  :selected").text();
+                let modelo          = $("#modelos :selected").text();
+                let ano             = $("#ano :selected").text();
+                let valorDoAgragado = $('input[name=agregado]:checked', '#form_fipe_stage_1').val();
+               
+                // Dados pessoais
+                let nome           = $("#nome").val();
+                let email          = $("#email").val();
+                let telefone       = $("#telefone").val();
+                let estado         = $("#estado :selected").text();
+                let cidade         = $("#cidade").val();
+                let possuiProtecao = $('input[name=comOuSemProtecao]:checked', '#form_fipe_stage_2').val();
 
+                console.log(marca, modelo, ano, valorDoAgragado, nome, email, telefone, estado, cidade, possuiProtecao);
 
+                if(nome == "" || null && email == "" || null && telefone == "" || null && estado == ""  || null && cidade == "" || null	&& possuiProtecao == "" || null){
+                    alert("prencha os campos");
+                    return false;
+                }else{
+                    // alert("enviando email");
+                    $.get('email.php', {nome: nome, email: email, telefone: telefone, estado: estado, cidade: cidade, possuiProtecao: possuiProtecao }, function(envia) {
+
+                        $("#status").slideDown();
+
+                        if (envia != 1) {
+                            $("#alert-danger").show();
+                            $("#id").css("display", "none");
+                            $("#id").css("display", "block");
+                        }else{
+                            $("#alert-success").show();
+                            alert('Mensagem enviada com sucesso!');
+                            $("#nome").val("");
+                            $("#email").val("");
+                            $("#assunto").val("");
+                            $("#telefone").val("");
+                            $("#mensagem").val("");
+                            $(".radio").val(""); 
+                        }
+                    
+                        return false;
+
+                    });
+                }
+            
+            });
 
         });
     });
