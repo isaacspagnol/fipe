@@ -1,6 +1,6 @@
 <?php
 /*
-	plugin name: Proteauto Consulta Fiope
+	plugin name: Eficaz Representação - Consulta Fipe
 	Plugin uri: https://github.com/isaacmicael51/fipe
 	Description: Esse plugin fará acesso a tabela fipe de veículos do Brasil e efetuará cálculos do seguro de caminhões
 	Version: 1.0
@@ -92,7 +92,36 @@ class cm_consulta_fipe extends WP_Widget {
                 <label>Informe valor do agregado</label>
                 <input  class="form-control valor-do-agregado round" type="text" value="undefined" id="agregado" required>
             </div>
+            <div class="form-group">
+                <p>Deseja adicionar guincho para pane seca ou elétrica: ?</p>
+                <input id="guinchoPrata"    type="radio" name="guincho" value="0" /> Plano prata: Já incluso (Guincho de 300km totais) 
+                <br />
+                <input id="guinchoOuro"     type="radio" name="guincho" value="1"/> Plano Ouro: R$ 30 (Guincho de 600km totais)
+                <br />
+                <input id="guinchoDiamante" type="radio" name="guincho" value="2"/> Plano  Diamante: R$ 63 (Guincho de 1000km totais)
+               
+            </div>
 
+            <div class="form-group terceiros">
+                <p>Deseja adicionar cobertura para teceiros?</p>
+                <input id="coberturaterceiro50"  type="radio" name="coberturaTerceiro" value="0"/> Não quero cobertura para terceiros
+                <br />
+                <input id="coberturaterceiro50"  type="radio" name="coberturaTerceiro" value="1"/> R$ 50 mil
+                <br />
+                <input id="coberturaterceiro100" type="radio" name="coberturaTerceiro" value="2"/> R$ 100 mil
+                <br />
+                <input id="coberturaterceiro150" type="radio" name="coberturaTerceiro" value="3"/> R$ 150 mil
+                <br />
+                <input id="coberturaterceiro200" type="radio" name="coberturaTerceiro" value="4"/> R$ 200 mil
+                <br />
+                <input id="coberturaterceiro250" type="radio" name="coberturaTerceiro" value="5"/> R$ 250 mil
+                <br />
+                <input id="coberturaterceiro400" type="radio" name="coberturaTerceiro" value="6"/> R$ 300 mil
+                <br />
+                <input id="coberturaterceiro400" type="radio" name="coberturaTerceiro" value="7"/> R$ 400 mil
+                <br />
+                <input id="coberturaterceiro500" type="radio" name="coberturaTerceiro" value="8"/> R$ 500 mil
+            </div>
             <div class="form-group">
                 <p class="btn btn-success" id="continuar">Continuar</p>
             </div>
@@ -131,10 +160,31 @@ class cm_consulta_fipe extends WP_Widget {
             </div>
 
             <div class="form-group">
+                <p class="btn btn-success" id="voltar-1">Voltar</p>
                 <p class="btn btn-success" id="continuar-2">Continuar</p>
-                <p  class="btn btn-success" id="voltar-1">Voltar</p>
             </div>
         </form>
+
+
+        <form id="form_fipe_stage_3" method="post" class="d-none">
+
+        <div class="container" id="resumo">
+            <div class="row">
+                <div class="col-12">
+                    <h3>O valor do seguro é</h3>
+                    <p  id="valorDaParcela"></p>
+                </div>
+            </div>
+        </div>
+           
+      
+
+            <div class="form-group">
+                <p class="btn btn-success" id="continuar-3">Continuar</p>
+                <p  class="btn btn-success" id="voltar-2">Voltar</p>
+            </div>
+        </form>
+
 
 
         <table class="table" id="veiculo" style="width: 100%"></table>
@@ -142,13 +192,7 @@ class cm_consulta_fipe extends WP_Widget {
 
 
 
-        <div class="container d-none" id="resumo">
-            <div class="row">
-                <div class="col-12" id="valorDaParcela">
-                   
-                </div>
-            </div>
-        </div>
+      
 
         <?php
         echo $args['after_widget'];

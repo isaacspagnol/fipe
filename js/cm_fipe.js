@@ -5,7 +5,7 @@ jQuery(document).ready(function($) {
         $.getJSON(urlBase + "/" + "caminhoes" + "/" + "marcas", function (data) {
             var items = ["<option value=\"\">Selecione uma marca</option>"];
             $.each(data, function (key, val) {
-                items += ("<option value='" + val.codigo + "'>" + val.nome + "</option>");
+                items += ("<option  value='" + val.codigo + "'>" + val.nome + "</option>");
             });
             $("#marcas").html(items);
         });
@@ -35,7 +35,7 @@ jQuery(document).ready(function($) {
             $("#ano").html(items);
         });
     });
-    /*--------Dados completo---------*/
+    /*--------Dados compvaro---------*/
 
 
 //    MARCA E DESMARCA RADIO SELECT
@@ -81,7 +81,7 @@ jQuery(document).ready(function($) {
                 $("#form_fipe_stage_2").fadeIn("slow").removeClass('d-none');
                 $("#form_fipe_stage_1").fadeOut("slow").addClass('d-none');
 
-                let valorFipe = dados.Valor;
+                var valorFipe = dados.Valor;
                 valorFipe = valorFipe.replace(/[R$]+/g, '');
                 valorFipe = valorFipe.replace(".", "");
                 valorFipe = valorFipe.replace(",", ".");
@@ -89,11 +89,20 @@ jQuery(document).ready(function($) {
                 console.log(valorFipe);
 
 // VARIAVEIS DE VALORES
-                let vitalicio = 91;
-                let mensal = 100;
-                let taxaMenor200 = 0.32;
-                let taxaMaior200 = 0.31;
-                let agregado = $('#agregado').val();
+                const vitalicio = 91;
+                const mensal = 100;
+                const taxaMenor200 = 0.32;
+                const taxaMaior200 = 0.31;
+                const cobTerceiro1 = 120;
+                const cobTerceiro2 = 180;
+                const cobTerceiro3 = 200;
+                const cobTerceiro4 = 230;
+                const cobTerceiro5 = 250;
+                const cobTerceiro6 = 280;
+                const cobTerceiro7 = 310;
+                const cobTerceiro8 = 500;
+
+                var agregado = $('#agregado').val();
                 agregado = agregado.replace(".", "");
                 agregado = agregado.replace(",", ".");
                 agregado = parseFloat(agregado);
@@ -101,46 +110,58 @@ jQuery(document).ready(function($) {
 
 
 // PEGA VALOR DO RADIO AGREGADO
-                let comOuSemAgregado = $('input[name=agregado]:checked', '#form_fipe_stage_1').val();
+                var comOuSemAgregado = $('input[name=agregado]:checked', '#form_fipe_stage_1').val();
 
                 //se tiver agregado
                 if (comOuSemAgregado == 1) {
-                    let fipeAgregado = valorFipe + agregado;
+                    var fipeAgregado = valorFipe + agregado;
                     console.log('fipe com agregado ' + fipeAgregado.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'}));
 
 
 
                     // Valor fixo de for menor a 110 mil reais
                     if (fipeAgregado <= 110000) {
-                        let valorFinal = 442;
+                        var valorFinal = 442;
                         console.log(valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'}));
+                        
+                        var cobTerceiros = $('input[name=coberturaTerceiro]:checked', '#form_fipe_stage_1').val();
+
+                        $(function(){
+                            if ( cobTerceiros == 1 ) {
+                                var finalComTerceiro = valorFinal + cobTerceiro1;
+                                var valorFormatadoReal = finalComTerceiro.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
+                                var resultado = ["<input value='" + valorFormatadoReal + "'>"];
+                                $("#valorDaParcela").html(resultado);
+                            }
                             
-                        let valorFormatadoReal = valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
-                        let resultado = ["<input value='" + valorFormatadoReal + "'>"];
-                        $("#valorDaParcela").html(resultado);
+
+
+                          
+                        });
+                        
                     }
 
                     // calcula valor da parcela caso for mais que 110mil e menor que 200mil
                     if ((fipeAgregado > 110000) && (fipeAgregado < 200000)) {
-                        let valorAnual = fipeAgregado * taxaMenor200;
-                        let valorMensal = valorAnual / mensal;
-                        let valorFinal = valorMensal + vitalicio;
+                        var valorAnual = fipeAgregado * taxaMenor200;
+                        var valorMensal = valorAnual / mensal;
+                        var valorFinal = valorMensal + vitalicio;
                         console.log(valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'}));
                             
-                        let valorFormatadoReal = valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
-                        let resultado = ["<input value='" + valorFormatadoReal + "'>"];
+                        var valorFormatadoReal = valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
+                        var resultado = ["<input value='" + valorFormatadoReal + "'>"];
                         $("#valorDaParcela").html(resultado);
                     }
 
                     //  calucula valor da parcela caso for maior que 200mil
                     if (fipeAgregado > 200000) {
-                        let valorAnual = fipeAgregado * taxaMaior200;
-                        let valorMensal = valorAnual / mensal;
-                        let valorFinal = valorMensal + vitalicio;
+                        var valorAnual = fipeAgregado * taxaMaior200;
+                        var valorMensal = valorAnual / mensal;
+                        var valorFinal = valorMensal + vitalicio;
                         console.log(valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'}));
     
-                        let valorFormatadoReal = valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
-                        let resultado = ["<input value='" + valorFormatadoReal + "'>"];
+                        var valorFormatadoReal = valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
+                        var resultado = ["<input value='" + valorFormatadoReal + "'>"];
                         $("#valorDaParcela").html(resultado);
                     }
 
@@ -152,35 +173,36 @@ jQuery(document).ready(function($) {
                         var valorFinal = 442;
                         console.log(valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'}));
                             
-                        let valorFormatadoReal = valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
-                        let resultado = ["<input value='" + valorFormatadoReal + "'>"];
+                        var valorFormatadoReal = valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
+                        var resultado = ["<input value='" + valorFormatadoReal + "'>"];
                         $("#valorDaParcela").html(resultado);
                     }
 
                     // calcula valor da parcela caso for mais que 110mil e menor que 200mil
                     if ((valorFipe > 110000) && (valorFipe < 200000)) {
-                        let valorAnual = valorFipe * taxaMenor200;
-                        let valorMensal = valorAnual / mensal;
-                        let valorFinal = valorMensal + vitalicio;
+                        var valorAnual = valorFipe * taxaMenor200;
+                        var valorMensal = valorAnual / mensal;
+                        var valorFinal = valorMensal + vitalicio;
                         console.log(valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'}));
     
-                        let valorFormatadoReal = valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
-                        let resultado = ["<input value='" + valorFormatadoReal + "'>"];
+                        var valorFormatadoReal = valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
+                        var resultado = ["<input value='" + valorFormatadoReal + "'>"];
                         $("#valorDaParcela").html(resultado);
                     }
 
                     //  calucula valor da parcela caso for maior que 200mil
                     if ((valorFipe > 200000)) {
-                        let valorAnual = valorFipe * taxaMaior200;
-                        let valorMensal = valorAnual / mensal;
-                        let valorFinal = valorMensal + vitalicio;
+                        var valorAnual = valorFipe * taxaMaior200;
+                        var valorMensal = valorAnual / mensal;
+                        var valorFinal = valorMensal + vitalicio;
                         console.log(valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'}));
     
-                        let valorFormatadoReal = valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
-                        let resultado = ["<input value='" + valorFormatadoReal + "'>"];
+                        var valorFormatadoReal = valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
+                        var resultado = ["<input value='" + valorFormatadoReal + "'>"];
                         $("#valorDaParcela").html(resultado);
                     }
                 }
+
             
             });
 
@@ -191,22 +213,35 @@ jQuery(document).ready(function($) {
             });
 
 
+            $("#voltar-2").on('click', function () {
+                // manda de volta para o stage_1
+                    $("#form_fipe_stage_2").fadeIn("slow").removeClass('d-none');
+                    $("#form_fipe_stage_3").fadeOut("slow").addClass('d-none');
+            });
+
+
+           
             // salva os dados form stage_2 e manda via get para o email.php
             $("#continuar-2").on('click', function () {
-              
+
+                $("#form_fipe_stage_3").fadeIn("slow").removeClass('d-none');
+                $("#form_fipe_stage_2").fadeOut("slow").addClass('d-none');
+
+                
+
                 // Dados do caminhão
-                let marca           = $("#marcas  :selected").text();
-                let modelo          = $("#modelos :selected").text();
-                let ano             = $("#ano :selected").text();
-                let valorDoAgragado = $('input[name=agregado]:checked', '#form_fipe_stage_1').val();
+                var marca           = $("#marcas  :selected").text();
+                var modelo          = $("#modelos :selected").text();
+                var ano             = $("#ano :selected").text();
+                var valorDoAgragado = $('input[name=agregado]:checked', '#form_fipe_stage_1').val();
                
                 // Dados pessoais
-                let nome           = $("#nome").val();
-                let email          = $("#email").val();
-                let telefone       = $("#telefone").val();
-                let estado         = $("#estado :selected").text();
-                let cidade         = $("#cidade").val();
-                let possuiProtecao = $('input[name=comOuSemProtecao]:checked', '#form_fipe_stage_2').val();
+                var nome           = $("#nome").val();
+                var email          = $("#email").val();
+                var telefone       = $("#telefone").val();
+                var estado         = $("#estado :selected").text();
+                var cidade         = $("#cidade").val();
+                var possuiProtecao = $('input[name=comOuSemProtecao]:checked', '#form_fipe_stage_2').val();
 
                 console.log(marca, modelo, ano, valorDoAgragado, nome, email, telefone, estado, cidade, possuiProtecao);
 
