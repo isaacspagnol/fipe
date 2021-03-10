@@ -171,6 +171,7 @@ class cm_consulta_fipe extends WP_Widget {
         <div class="container" id="resumo">
             <div class="row">
                 <div class="col-12">
+                    <p id="resumoCaminhao"></p>
                     <h3>O valor do seguro é</h3>
                     <p  id="valorDaParcela"></p>
                 </div>
