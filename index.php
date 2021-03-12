@@ -90,7 +90,7 @@ class cm_consulta_fipe extends WP_Widget {
                 </select>
 
                 <label>Informe valor do agregado</label>
-                <input  class="form-control valor-do-agregado round" type="text" value="undefined" id="agregado" required>
+                <input  class="form-control valor-do-agregado round" type="text" value="" id="agregado" required>
             </div>
             <div class="form-group">
                 <p>Deseja adicionar guincho para pane seca ou elétrica: ?</p>

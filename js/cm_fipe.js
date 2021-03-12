@@ -107,22 +107,23 @@ jQuery(document).ready(function($) {
             //  VERIFICAR PORQUE NÃO PRINTA VALOR DO agregado
             //  TRANSFORMAR O CALCULO DO TERCEIRO E DO GUNCHO EM FUNCÃO E CHAMAR NA CONTA
 
-              // Dados do caminhão
-              var marca           = $("#marcas  :selected").text();
-              var modelo          = $("#modelos :selected").text();
-              var ano             = $("#ano :selected").text();
-              var valorDoAgregado = $('input[name=agregado]:checked', '#form_fipe_stage_1').val();
- 
-              $(document).change (function montaResumo() {
-                  var resumo = ["<h1>Dados do seu caminhão </h1> <p>Marca:" + marca + "</p> <p> Modelo:" + modelo + "</p> <p>Ano do caminhão" + ano + "</p> <p> Valor da fipe:" + valorFipe.toLocaleString('pt-br', {style: 'currency',currency: 'BRL'}) + "</p> <p>Valor do agregado:" + valorDoAgregado + "</p>" ];
-                  $("#resumoCaminhao").html(resumo);
-              });
  
 
             
 
             // PEGA O CLICK DO BUTTON E FAZ A CONTA
             $("#continuar").on('click', function() {
+            
+ 
+              $(function montaResumo() {
+                    // Dados do caminhão
+                    var marca           = $("#marcas  :selected").text();
+                    var modelo          = $("#modelos :selected").text();
+                    var ano             = $("#ano :selected").text();
+                    var valorDoAgregado = $("#agregado").val();
+                  var resumo = ["<h1>Dados do seu caminhão </h1> <p>Marca:" + marca + "</p> <p> Modelo:" + modelo + "</p> <p>Ano do caminhão" + ano + "</p> <p> Valor da fipe:" + valorFipe.toLocaleString('pt-br', {style: 'currency',currency: 'BRL'}) + "</p> <p>Valor do agregado:" + valorDoAgregado + "</p>" ];
+                  $("#resumoCaminhao").html(resumo);
+              });
 
 
                 var agregado = $('#agregado').val();
