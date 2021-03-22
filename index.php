@@ -20,6 +20,13 @@ function cm_carrega_scripts() {
     wp_enqueue_script("jquery");
     wp_enqueue_script('cm_fipe', plugin_dir_url(__FILE__) . 'js/cm_fipe.js',array('jquery'));
 }
+
+function cm_carrega_style() {
+    wp_enqueue_style('cm_fipe_style', plugin_dir_url(__FILE__) . 'css/style.css',array('css'));
+    
+}
+
+add_action('wp_enqueue_style', 'cm_carrega_style');
 add_action( 'wp_enqueue_scripts', 'cm_carrega_scripts' );
 
 class cm_consulta_fipe extends WP_Widget {
@@ -45,6 +52,7 @@ class cm_consulta_fipe extends WP_Widget {
         ?>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous"></script>
         <script src="/wp-content/plugins/fipe/js/maskbrphone.js"></script>
+        <link rel="stylesheet" href="/wp-content/plugins/fipe/css/style.css">
         <style>
             #valorSeguro {
                 background: #d1e4dd;
@@ -54,45 +62,62 @@ class cm_consulta_fipe extends WP_Widget {
                 border: none;
             }
         </style>
-        <form id="form_fipe_stage_1" method="post">
+
+        <div class="container-fluid">
+            <div class="row" id="form_fipe_stage_1" >
+                <div class="col-12 col-md-12 p-0">
+                    <p class="text-center"><img src="/wp-content/plugins/fipe/img/seja-associado-proteauto.png" class="img-fluid" alt=""></p>
+                    <h1>Não perca mais tempo faça sua cotação!</h1>
+                    <form method="post">       
             <div class="form-group">
-                <label>Informe os dados do seu caminhão</label>
+                <p class="text-center">Informe os dados do seu caminhão</label>
             </div>
-            <div class="form-group">
-                <select id="marcas" class="form-control round"></select>
+            <div class="form-group mt-4">
+                <label>Marca do seu caminhão</label>
+                <select id="marcas" placeholder="Selecione a marca do seu caminhão" class="form-control round">
+                </select>
             </div>
-            <div class="form-group">
-                <select id="modelos" class="form-control round"></select>
+            <div class="form-group mt-2">
+                <label>Modelo do seu caminhão</label>
+                <select id="modelos" placeholder="Selecione o modelo do seu caminhão" class="form-control round">
+                    <option value="">Selecione o modelo do seu caminhão</option>
+                </select>
             </div>
-            <div class="form-group">
-                <select id="ano" class="form-control round"></select>
+            <div class="form-group mt-2">
+                <label>Ano do seu caminhão</label>
+                <select id="ano" placeholder="Selecione o ano do seu caminhão" class="form-control round">
+                    <option value="">Selecione o ano do seu caminhão</option>
+                </select>
             </div>
-            <div class="form-group">
-                <p>Possui agregado?</p>
+            <div class="form-group mt-2">
+                <p class="p-0">Possui agregado?</p>
                 <input id="comAgregado" type="radio" name="agregado" value="1" /> Sim
                 <br />
                 <input id="semAgregado" type="radio" name="agregado" value="0"/> Não
                 <br />
             </div>
-            <div class="form-group d-none" id="valorAgregado">
-                <label>Informe o tipo agregado</label>
-                <select  class="form-control round" name="tipoAgregado" id="tipoAgregado">
-                    <option value="">Carroceria</option>
-                    <option value="">Baú</option>
-                    <option value="">Sider</option>
-                    <option value="">Silo</option>
-                    <option value="">Bi-trem</option>
-                    <option value="">Camara fria</option>
-                    <option value="">Caçamba</option>
-                    <option value="">Tanque</option>
-                    <option value="">Sider</option>
-                    <option value="">Outro</option>
-                </select>
-
-                <label>Informe valor do agregado</label>
-                <input  class="form-control valor-do-agregado round" type="text" value="" id="agregado" required>
-            </div>
-            <div class="form-group">
+            <div id="valorAgregado"  class="d-none">
+                <div class="form-group mt-2">
+                    <label>Informe o tipo agregado</label>
+                    <select  class="form-control round" name="tipoAgregado" id="tipoAgregado">
+                        <option value="">Carroceria</option>
+                        <option value="">Baú</option>
+                        <option value="">Sider</option>
+                        <option value="">Silo</option>
+                        <option value="">Bi-trem</option>
+                        <option value="">Camara fria</option>
+                        <option value="">Caçamba</option>
+                        <option value="">Tanque</option>
+                        <option value="">Sider</option>
+                        <option value="">Outro</option>
+                    </select>
+                </div>
+                <div class="form-group mt-2">
+                    <label>Informe valor do agregado</label>
+                    <input  class="form-control valor-do-agregado round" type="text" value="" id="agregado" required>
+                </div>
+            </div>      
+            <!-- <div class="form-group">
                 <p>Deseja adicionar guincho para pane seca ou elétrica: ?</p>
                 <input id="guinchoPrata"    type="radio" name="guincho" value="0" /> Plano prata: Já incluso (Guincho de 300km totais) 
                 <br />
@@ -100,9 +125,9 @@ class cm_consulta_fipe extends WP_Widget {
                 <br />
                 <input id="guinchoDiamante" type="radio" name="guincho" value="2"/> Plano  Diamante: R$ 63 (Guincho de 1000km totais)
                
-            </div>
+            </div> -->
 
-            <div class="form-group terceiros">
+            <!-- <div class="form-group terceiros">
                 <p>Deseja adicionar cobertura para teceiros?</p>
                 <input id="coberturaterceiro50"  type="radio" name="coberturaTerceiro" value="0"/> Não quero cobertura para terceiros
                 <br />
@@ -121,11 +146,26 @@ class cm_consulta_fipe extends WP_Widget {
                 <input id="coberturaterceiro400" type="radio" name="coberturaTerceiro" value="7"/> R$ 400 mil
                 <br />
                 <input id="coberturaterceiro500" type="radio" name="coberturaTerceiro" value="8"/> R$ 500 mil
-            </div>
+            </div> -->
             <div class="form-group">
-                <p class="btn btn-success" id="continuar">Continuar</p>
+                <p class="btn btn-custom text-center" id="continuar">Continuar</p>
             </div>
         </form>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+        
         
         <form id="form_fipe_stage_2" method="post" class="d-none">
             <div class="form-group">
@@ -143,16 +183,16 @@ class cm_consulta_fipe extends WP_Widget {
                 <label for="telefone">Telefone</label>
                 <input id="telefone" name="telefone" type="text" placeholder="Informe seu telefone" class="form-control round telefone">
             </div>
-            <div class="form-grupo">
+            <!-- <div class="form-grupo">
                 <label for="estado">Estado</label>
                 <input id="estado" name="estado" type="text" placeholder="Informe seu Estado" class="form-control round">
-            </div>
-            <div class="form-grupo">
+            </div> -->
+            <!-- <div class="form-grupo">
                 <label for="cidade">Cidade</label>
                 <input id="cidade" name="cidade" type="text" placeholder="Informe seu estado" class="form-control round">
-            </div>
+            </div> -->
             <div class="form-group">
-                <p>Possui alguma proteção atualmente?</p>
+                <label>Possui alguma proteção atualmente?</label>
                 <input id="temProtecao" type="radio" name="comOuSemProtecao" value="1" /> Sim
                 <br />
                 <input id="nTemprotecao" type="radio" name="comOuSemProtecao" value="0"/> Não
@@ -181,8 +221,8 @@ class cm_consulta_fipe extends WP_Widget {
       
 
             <div class="form-group">
-                <p class="btn btn-success" id="continuar-3">Continuar</p>
-                <p  class="btn btn-success" id="voltar-2">Voltar</p>
+                <!-- <p class="btn btn-success" id="continuar-3">Continuar</p>
+                <p  class="btn btn-success" id="voltar-2">Voltar</p> -->
             </div>
         </form>
 

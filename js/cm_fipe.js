@@ -3,7 +3,7 @@ jQuery(document).ready(function($) {
     /** Marcas**/
     $(document).ready(function() {
         $.getJSON(urlBase + "/" + "caminhoes" + "/" + "marcas", function(data) {
-            var items = ["<option value=\"\">Selecione uma marca</option>"];
+            var items = ["<option value=\"\">Selecione a marca do seu caminhão</option>"];
             $.each(data, function(key, val) {
                 items += ("<option  value='" + val.codigo + "'>" + val.nome + "</option>");
             });
@@ -15,7 +15,7 @@ jQuery(document).ready(function($) {
 
     $("#marcas").change(function() {
         $.getJSON(urlBase + "/" + "caminhoes" + "/" + "marcas" + "/" + jQuery("#marcas").val() + "/" + "modelos", function(data) {
-            var items = ["<option value=\"\">Selecione o modelo</option>"];
+            var items = ["<option value=\"\">Selecione o modelo do seu caminhão</option>"];
             $.each(data.modelos, function(key, val) {
                 items += ("<option value='" + val.codigo + "'>" + val.nome + "</option>");
             });
@@ -27,7 +27,7 @@ jQuery(document).ready(function($) {
 
     $("#modelos").change(function() {
         $.getJSON(urlBase + "/" + "caminhoes" + "/" + "marcas" + "/" + jQuery("#marcas").val() + "/" + "modelos" + "/" + jQuery("#modelos").val() + "/" + "anos", function(data) {
-            var items = ["<option value=\"\">Selecione o ano</option>"];
+            var items = ["<option value=\"\">Selecione o ano do seu caminhão</option>"];
             $.each(data, function(key, val) {
                 console.log(data)
                 items += ("<option value='" + val.codigo + "'>" + val.nome + "</option>");
@@ -121,8 +121,12 @@ jQuery(document).ready(function($) {
                     var modelo          = $("#modelos :selected").text();
                     var ano             = $("#ano :selected").text();
                     var valorDoAgregado = $("#agregado").val();
-                  var resumo = ["<h1>Dados do seu caminhão </h1> <p>Marca:" + marca + "</p> <p> Modelo:" + modelo + "</p> <p>Ano do caminhão" + ano + "</p> <p> Valor da fipe:" + valorFipe.toLocaleString('pt-br', {style: 'currency',currency: 'BRL'}) + "</p> <p>Valor do agregado:" + valorDoAgregado + "</p>" ];
+                  var resumo = ["<h1>Dados do seu caminhão </h1> <p>Marca:" + marca + "</p> <p> Modelo:" + modelo + "</p> <p>Ano do caminhão" + ano + "</p> <p> Valor da fipe:" + valorFipe.toLocaleString('pt-br', {style: 'currency',currency: 'BRL'}) + "</p> <p id='agregadoResumo'>Valor do agregado:" + valorDoAgregado + "</p>" ];
                   $("#resumoCaminhao").html(resumo);
+                //   Se não houver agregado add display none
+                  if ( valorDoAgregado == 0 || null ) {
+                      $('#agregadoResumo').addClass('d-none');
+                  }
               });
 
 
