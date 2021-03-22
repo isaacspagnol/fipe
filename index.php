@@ -90,7 +90,7 @@ class cm_consulta_fipe extends WP_Widget {
                 </select>
             </div>
             <div class="form-group mt-2">
-                <p class="p-0">Possui agregado?</p>
+                <p class="p-0 m-0">Possui agregado?</p>
                 <input id="comAgregado" type="radio" name="agregado" value="1" /> Sim
                 <br />
                 <input id="semAgregado" type="radio" name="agregado" value="0"/> Não
@@ -114,7 +114,7 @@ class cm_consulta_fipe extends WP_Widget {
                 </div>
                 <div class="form-group mt-2">
                     <label>Informe valor do agregado</label>
-                    <input  class="form-control valor-do-agregado round" type="text" value="" id="agregado" required>
+                    <input placeholder="R$ 20.0000" class="form-control valor-do-agregado round" type="text" value="" id="agregado" required>
                 </div>
             </div>      
             <!-- <div class="form-group">
@@ -148,7 +148,7 @@ class cm_consulta_fipe extends WP_Widget {
                 <input id="coberturaterceiro500" type="radio" name="coberturaTerceiro" value="8"/> R$ 500 mil
             </div> -->
             <div class="form-group">
-                <p class="btn btn-custom text-center" id="continuar">Continuar</p>
+                <p class="btn-custom text-center" id="continuar">Continuar</p>
             </div>
         </form>
                 </div>
@@ -166,10 +166,16 @@ class cm_consulta_fipe extends WP_Widget {
 
 
         
-        
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    
+                </div>
+            </div>
+        </div>
         <form id="form_fipe_stage_2" method="post" class="d-none">
             <div class="form-group">
-                <label>Informe seus dados</label>
+                <h2>Informe seus dados</h2>
             </div>
             <div class="form-grupo">
                 <label for="nome">Nome</label>
@@ -191,17 +197,17 @@ class cm_consulta_fipe extends WP_Widget {
                 <label for="cidade">Cidade</label>
                 <input id="cidade" name="cidade" type="text" placeholder="Informe seu estado" class="form-control round">
             </div> -->
-            <div class="form-group">
-                <label>Possui alguma proteção atualmente?</label>
-                <input id="temProtecao" type="radio" name="comOuSemProtecao" value="1" /> Sim
+            <div class="form-group mt-2">
+                <label class="p-0 ml-0">Possui alguma proteção atualmente?</label><br>
+                <input id="temProtecao" type="radio" name="comOuSemProtecao" value="1"/> Sim
                 <br />
                 <input id="nTemprotecao" type="radio" name="comOuSemProtecao" value="0"/> Não
                 <br />
             </div>
 
-            <div class="form-group">
-                <p class="btn btn-success" id="voltar-1">Voltar</p>
-                <p class="btn btn-success" id="continuar-2">Continuar</p>
+            <div class="form-group d-flex">
+                <p class="btn-custom" id="voltar-1">Voltar</p>
+                <p class="btn-custom" id="continuar-2">Continuar</p>
             </div>
         </form>
 
@@ -211,6 +217,7 @@ class cm_consulta_fipe extends WP_Widget {
         <div class="container" id="resumo">
             <div class="row">
                 <div class="col-12">
+                    <h2>Resumo da sua simulação</h2>
                     <p id="resumoCaminhao"></p>
                     <h3>O valor do seguro é</h3>
                     <p  id="valorDaParcela"></p>

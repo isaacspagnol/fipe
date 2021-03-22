@@ -121,7 +121,7 @@ jQuery(document).ready(function($) {
                     var modelo          = $("#modelos :selected").text();
                     var ano             = $("#ano :selected").text();
                     var valorDoAgregado = $("#agregado").val();
-                  var resumo = ["<h1>Dados do seu caminhão </h1> <p>Marca:" + marca + "</p> <p> Modelo:" + modelo + "</p> <p>Ano do caminhão" + ano + "</p> <p> Valor da fipe:" + valorFipe.toLocaleString('pt-br', {style: 'currency',currency: 'BRL'}) + "</p> <p id='agregadoResumo'>Valor do agregado:" + valorDoAgregado + "</p>" ];
+                  var resumo = ["<h1>Dados do seu caminhão </h1> <div class='content_marca__modelo'><div class='marca'><p><b>Marca</b><br>" + marca + "</p></div> <div class='modelo'><p><b>Modelo</b><br>" + modelo + "</p></div></div> <div class='ano_fipe_agregado'> <p><b>Ano do caminhão</b>: " + ano + "</p> <p><b>Valor da fipe</b>: " + valorFipe.toLocaleString('pt-br', {style: 'currency',currency: 'BRL'}) + "</p> <p id='agregadoResumo'><b>Valor do agregado</b>: " + valorDoAgregado + "</p></div>" ];
                   $("#resumoCaminhao").html(resumo);
                 //   Se não houver agregado add display none
                   if ( valorDoAgregado == 0 || null ) {
@@ -187,7 +187,7 @@ jQuery(document).ready(function($) {
                                     currency: 'BRL'
                                 });
                                 // var resultado = ["<input value='" + valorFormatadoReal + "'>"];
-                                // $("#valorDaParcela").html(resultado);
+                                $("#valorDaParcela").html(resultado);
                                 console.log(valorFormatadoReal);
                                 montaResumo();
                             }

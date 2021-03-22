@@ -15,7 +15,7 @@ h5 {
     font-family: 'Quicksand', sans-serif;
     text-align: center;
 }
-h1 { 
+h1,h2 { 
     font-size: 26px;
     font-weight: bold;
 }
@@ -36,4 +36,37 @@ label{
     border-radius: 20px;
     color: white;
     padding: 8px 26px;
+    width: 46%;
+    margin: 0 auto;
+    text-align: center;
+}
+.ano_fipe_agregado{
+    border-radius: 16px;
+    border: 1px solid #90f7f1;
+    padding: 18px 16px 16px 16px;
+    margin: 6px;
+}
+.ano_fipe_agregado p {
+    line-height: .6;
+}
+.content_marca__modelo {
+    display: inline-flex;
+}
+.marca {
+    border: 1px solid #90f7f1;
+    border-radius: 16px;
+    padding: 18px 16px 16px;
+    width: 48%;
+    margin: 6px;
+    text-align: center
+
+}
+.modelo {
+    border: 1px solid #90f7f1;
+    border-radius: 16px;
+    padding: 18px 16px 16px;
+    width: 48%;
+    margin: 6px;
+    text-align: center
+
 }
